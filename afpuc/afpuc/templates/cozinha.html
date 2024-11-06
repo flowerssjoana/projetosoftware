@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>replit</title>
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h2>PEDIDOS</h2>
+ 
+  <table border="5">
+    <tr>
+        <th>NÚMERO do pedido</th>
+        <th>CONTEÚDO do pedido</th>
+        <th>SITUAÇÃO</th>
+    </tr>
+    <tr>
+        <td>{{numero1}}</td>
+        <td>{{conteudo1}}<br>
+            {{conteudo21}}
+        </td>
+        <td>{{sit1}}</td>
+    </tr>
+    <tr>
+        <td>1001</td>
+        <td>pão na chapa<br> 
+            café com leite
+        </td>
+        <td>em preparo</td>
+    </tr>
+    <tr>
+        <td>999</td>
+        <td>x-burger</td>
+        <td>pronto</td>
+    </tr>
+    <tr>
+        <td>998</td>
+        <td>sanduíche de frango</td>
+        <td>entregue</td>
+    </tr>
+    <tr>
+        <td>{{numero}}</td>
+        <td>{{conteudo}}<br>
+            {{conteudo2}}
+        </td>
+        <td>{{sit}}</td>
+    </tr>
+  <script src="script.js"></script>
+</body>
+</html>

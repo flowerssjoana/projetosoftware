@@ -1,0 +1,14 @@
+{
+    "name": "Django Dev Container",
+    "dockerFile": "Dockerfile",
+    "extensions": [
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "dbaeumer.vscode-eslint"
+    ],
+    "settings": {
+      "python.pythonPath": "/usr/local/bin/python"
+    },
+    "runArgs": ["--init"]
+  }
+  

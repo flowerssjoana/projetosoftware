@@ -1,0 +1,27 @@
+html {
+    height: 100%;
+    width: 100%;
+    background-color: ghostwhite;
+  }
+  table {
+    margin-top: 20px;
+  }
+  h2 {
+    font-size: 35px;
+    font-family:Georgia, 'Times New Roman', Times, serif ;
+    color: green;
+  }
+  tr {
+    background-color: lightskyblue;
+    font-family:Georgia, 'Times New Roman', Times, serif ;
+    font-size: 22px;
+  }
+  table {
+    border: 5px solid blue;
+  }
+  th {
+    padding: 20px;
+  }
+  td {
+    padding: 10px;
+  }
