@@ -7,8 +7,12 @@
       "dbaeumer.vscode-eslint"
     ],
     "settings": {
-      "python.pythonPath": "/usr/local/bin/python"
+      "python.defaultInterpreterPath": "/usr/local/bin/python"
     },
+    "build": {
+  "dockerfile": "Dockerfile",
+  "context": "."
+},
     "runArgs": ["--init"]
   }
   
