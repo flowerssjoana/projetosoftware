@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from .forms import CriarConta
+from .models import Conta
+from django.http import HttpResponse
+
 
 def cozinha (request):
     pedidos = {
@@ -29,7 +32,8 @@ def criar_conta (request):
                 email=formulario.cleaned_data['email']
             )
             # Aqui você pode salvar os dados no banco ou realizar outra lógica
-            return HttpResponse(f"Conta criada com sucesso para {nome} ({email})!")
+            return HttpResponse(f"Conta criada com sucesso para {formulario.cleaned_data['nome']} ({formulario.cleaned_data['email']})!")
+
     else:
         # Caso o método HTTP não seja suportado
         return HttpResponse("Método não suportado.", status=405)
