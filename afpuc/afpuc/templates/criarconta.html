@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>replit</title>
+    <link href="{% static 'styleCriarConta.css' %}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h1>CADASTRO</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ formulario.as_p }}
+    <button type="submit">Enviar</button>
+  </form>
+</body>
+</html>

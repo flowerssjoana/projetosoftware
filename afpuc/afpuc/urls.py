@@ -16,10 +16,11 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-from afpuc import views
+from django.urls import path  # Certifique-se de que essa linha está presente.
+from afpuc import views  # Importando as views corretamente.
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("cozinha/",views.cozinha)
+    path('admin/', admin.site.urls),
+    path('cozinha/', views.cozinha),
+    path('criar-conta/', views.criar_conta, name='criar_conta'),
 ]

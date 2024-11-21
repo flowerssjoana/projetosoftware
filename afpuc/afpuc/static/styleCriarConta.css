@@ -1,0 +1,28 @@
+html {
+    height: 100%;
+    width: 100%;
+    background-color: ghostwhite;
+  }
+  h1 {
+    font-size: 35px;
+    font-family:Georgia, 'Times New Roman', Times, serif ;
+    color: green;
+    padding-left: 560px;
+    padding-top: 110px;
+  }
+  form {
+    font-size: 25px;
+    font-family:Georgia, 'Times New Roman', Times, serif ;
+    color: blue;
+    text-align: center;
+  }
+  button{
+    color:green;
+    font-size: 30px;
+    font-family:Georgia, 'Times New Roman', Times, serif ;
+    width: 175px;  
+    height: 75px; 
+  }
+
+
+ 
