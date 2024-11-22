@@ -41,44 +41,43 @@ def criar_conta (request):
 
     return render(request, 'criarconta.html', {'formulario': formulario})
 
-def listar_usuarios (request):
-    usuarios = usuario.objects.all()
+def listar_usuarios(request):
+    usuarios = Usuario.objects.all()  # Corrigido para 'Usuario'
     data = [
         {
-            "id" : usuario.idPUC,
-            "nome_completo" : usuario.nomeCompleto,
-            "email" : usuario.emailDoCliente
+            "id": usuario.idPUC,
+            "nome_completo": usuario.nomeCompleto,
+            "email": usuario.emailDoCliente
         }
-        for usuario in usuarios 
+        for usuario in usuarios
     ]
-        return render(request, "usuarios/listar_usuarios.html",{"usuarios": usuarios})
+    return render(request, "usuarios/listar_usuarios.html", {"usuarios": data})
 
-
-def listar_itens (request): 
-    itens = Itens.objects.all()
+def listar_itens(request):
+    itens = Itens.objects.all()  # Corrigido para 'Itens'
     data = [
         {
-            "id" : usuario.id_produto,
-            "nome_produto" : usuario.nomeProduto,
+            "id": item.id_produto,  # Corrigido de 'usuario' para 'item'
+            "nome_produto": item.nomeProduto,
             "valor": float(item.valor_produto),
             "descricao": item.descricao
         }
-        for item in itens 
+        for item in itens
     ]
-        return render(request, "itens/listar_itens.html",{"itens": itens})
-    
-def listar_pedidos (request): 
-    pedidos = itensDoPedido.objects.all()
-    data = [{
-        "id" : pedido.id_pedido
-        "cliente" : pedido.id_cliente.nome_completo,
-        "valor_total" : str(pedido.valorTotalDoPedido),
-        "status" : pedido.statusDoPedido,
-    }
-    for pedido in pedidos
- ]
-    #return JsonResponse(data, safe=False)
-    return render(request, "pedidos/listar_pedidos.html",{"pedidos": pedidos})
+    return render(request, "itens/listar_itens.html", {"itens": data})
+
+def listar_pedidos(request):
+    pedidos = ItensDoPedido.objects.all()  # Corrigido para 'ItensDoPedido'
+    data = [
+        {
+            "id": pedido.id_pedido.id,  # Ajustado para acessar o id do pedido
+            "cliente": pedido.id_cliente.nomeCompleto,  # Corrigido para 'nomeCompleto'
+            "valor_total": str(pedido.valorTotalDoPedido),
+            "status": pedido.statusDoPedido,
+        }
+        for pedido in pedidos
+    ]
+    return render(request, "pedidos/listar_pedidos.html", {"pedidos": data})
 
 def carrinho(request):
     produtos = Produto.objects.all()
@@ -91,14 +90,18 @@ def carrinho(request):
 
 def finalizar_pedido(request):
     if request.method == "POST":
-        pedido = Pedido.objects.create()
-        produtos = Produto.objects.all() 
-        pedido.produtos.set(produtos)
-        pedido.calcular_total()
+        # Criação do pedido
+        pedido = Pedido.objects.create()  # Considerando que Pedido tem relação com Produto
+        produtos = Produto.objects.all()
+        pedido.produtos.set(produtos)  # Defina como 'produtos' são relacionados no modelo Pedido
+        
+        # Calcular o total do pedido
+        pedido.calcular_total()  # Assumindo que este método calcula o total corretamente
         
         context = {
             "pedido_id": pedido.id,
             "total": pedido.total,
         }
         return render(request, 'pedido_finalizado.html', context)
+    
     return redirect('carrinho')

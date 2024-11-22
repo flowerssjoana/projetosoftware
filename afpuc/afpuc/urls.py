@@ -28,6 +28,6 @@ urlpatterns = [
     path('carrinho/', views.carrinho, name='carrinho'),
     path('finalizar-pedido/', views.finalizar_pedido, name='finalizar_pedido'),
 ],
-]
+
 
 
