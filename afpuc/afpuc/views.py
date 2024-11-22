@@ -59,23 +59,12 @@ def listar_itens (request):
         {
             "id" : usuario.id_produto,
             "nome_produto" : usuario.nomeProduto,
-            "email" : usuario.emailDoCliente
-        }
-        for usuario in usuarios 
-    ]
-        return render(request, "usuarios/listar_usuarios.html",{"usuarios": usuarios})
-
-itens = Itens.objects.all()
-    data = [
-        {
-            "id": item.id,
-            "nome_produto": item.nome_produto,
             "valor": float(item.valor_produto),
-            "descricao": item.descricao,
+            "descricao": item.descricao
         }
-        for item in itens
+        for item in itens 
     ]
-    return JsonResponse(data, safe=False)
+        return render(request, "itens/listar_itens.html",{"itens": itens})
     
 def listar_pedidos (request): 
     pedidos = itensDoPedido.objects.all()
