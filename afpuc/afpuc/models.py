@@ -19,31 +19,32 @@ class Usuario(models.Model):
     def __str__(self):
         return self.nomeCompleto
 
-class Itens(models.Model):
+class Item(models.Model):  # Alterei para 'Item' (singular)
     nomeProduto = models.CharField(max_length=300)
-    id_produto = models.ForeignKey(usuario, on_delete=models.CASCADE)
+    id_produto = models.ForeignKey(Usuario, on_delete=models.CASCADE)  # Alterei para 'Usuario'
     valor_produto = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.00)])
     descricao = models.TextField(max_length=300)
     foto_produto = models.ImageField(upload_to='produtos')
-    
+
     def __str__(self):
         return self.nomeProduto
 
 
-class itensDoPedido(models.Model):
-    id_pedido = models.ForeignKey(itens, on_delete=models.CASCADE)
-    id_cliente = models.ForeignKey(usuario, on_delete=models.CASCADE)
+class ItensDoPedido(models.Model):  # Alterei para 'ItensDoPedido' (nome mais apropriado)
+    id_pedido = models.ForeignKey(Item, on_delete=models.CASCADE)  # Alterei para 'Item'
+    id_cliente = models.ForeignKey(Usuario, on_delete=models.CASCADE)  # Alterei para 'Usuario'
     dataHorarioDoPedido = models.DateTimeField()
-    valorTotalDoPedido = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.00))
-    numDeItens = models.IntegerField(validadors=[MinValueValidator(1)])
+    valorTotalDoPedido = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.00)])
+    numDeItens = models.IntegerField(validators=[MinValueValidator(1)])
+
     statusDoPedido = models.BooleanField(default=False)
 
-    def calculaTotal (self):
-        self.valorTotalDoPedido = sum(nomeProduto.valorProduto for produto in self.produtoa.all())
+    def calculaTotal(self):
+        # Agora estamos pegando o valor de cada 'Item' associado ao pedido
+        self.valorTotalDoPedido = sum(item.valor_produto for item in self.id_pedido.all())  # Corrigido
         self.save()
-    
+
     def __str__(self):
         return f"Pedido {self.id_pedido} - Cliente {self.id_cliente}"
-
 
 
