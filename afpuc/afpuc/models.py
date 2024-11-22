@@ -22,7 +22,7 @@ class Usuario(models.Model):
 class Itens(models.Model):
     nomeProduto = models.CharField(max_length=300)
     id_produto = models.ForeignKey(usuario, on_delete=models.CASCADE)
-    valor_produto = models.DecimalField(max_digits=10, decimal_places=2, validadors=[MinValueValidator(0.00)])
+    valor_produto = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.00)])
     descricao = models.TextField(max_length=300)
     foto_produto = models.ImageField(upload_to='produtos')
     
@@ -38,6 +38,10 @@ class itensDoPedido(models.Model):
     numDeItens = models.IntegerField(validadors=[MinValueValidator(1)])
     statusDoPedido = models.BooleanField(default=False)
 
+    def calculaTotal (self):
+        self.valorTotalDoPedido = sum(nomeProduto.valorProduto for produto in self.produtoa.all())
+        self.save()
+    
     def __str__(self):
         return f"Pedido {self.id_pedido} - Cliente {self.id_cliente}"
 
