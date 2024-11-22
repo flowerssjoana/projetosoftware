@@ -39,3 +39,16 @@ def criar_conta (request):
         return HttpResponse("Método não suportado.", status=405)
 
     return render(request, 'criarconta.html', {'formulario': formulario})
+    
+def listar_pedidos (request): 
+    pedidos = ItensDoPedido.objects.all()
+    data = [{
+        "id" : pedido.id
+        "cliente" : pedido.id_cliente.nome_completo,
+        "valor_total" : str(pedido.valor_total_do_pedido),
+        "status" : pedido.status_do_pedido,
+    }
+    for pedido in pedidos
+ ]
+    #return JsonResponse(data, safe=False)
+    return render(request, "pedidos/listar_pedidos.html",{"pedidos": pedidos})
