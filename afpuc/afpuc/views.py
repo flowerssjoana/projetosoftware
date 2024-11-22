@@ -39,14 +39,51 @@ def criar_conta (request):
         return HttpResponse("Método não suportado.", status=405)
 
     return render(request, 'criarconta.html', {'formulario': formulario})
+
+def listar_usuarios (request):
+    usuarios = usuario.objects.all()
+    data = [
+        {
+            "id" : usuario.idPUC,
+            "nome_completo" : usuario.nomeCompleto,
+            "email" : usuario.emailDoCliente
+        }
+        for usuario in usuarios 
+    ]
+        return render(request, "usuarios/listar_usuarios.html",{"usuarios": usuarios})
+
+
+def listar_itens (request): 
+    itens = Itens.objects.all()
+    data = [
+        {
+            "id" : usuario.id_produto,
+            "nome_produto" : usuario.nomeProduto,
+            "email" : usuario.emailDoCliente
+        }
+        for usuario in usuarios 
+    ]
+        return render(request, "usuarios/listar_usuarios.html",{"usuarios": usuarios})
+
+itens = Itens.objects.all()
+    data = [
+        {
+            "id": item.id,
+            "nome_produto": item.nome_produto,
+            "valor": float(item.valor_produto),
+            "descricao": item.descricao,
+        }
+        for item in itens
+    ]
+    return JsonResponse(data, safe=False)
     
 def listar_pedidos (request): 
-    pedidos = ItensDoPedido.objects.all()
+    pedidos = itensDoPedido.objects.all()
     data = [{
-        "id" : pedido.id
+        "id" : pedido.id_pedido
         "cliente" : pedido.id_cliente.nome_completo,
-        "valor_total" : str(pedido.valor_total_do_pedido),
-        "status" : pedido.status_do_pedido,
+        "valor_total" : str(pedido.valorTotalDoPedido),
+        "status" : pedido.statusDoPedido,
     }
     for pedido in pedidos
  ]
