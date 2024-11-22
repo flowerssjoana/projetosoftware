@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import CriarConta
 from .models import Conta
 from django.http import HttpResponse
+from .models import Produto, Pedido
 
 
 def cozinha (request):
@@ -78,3 +79,21 @@ def listar_pedidos (request):
  ]
     #return JsonResponse(data, safe=False)
     return render(request, "pedidos/listar_pedidos.html",{"pedidos": pedidos})
+
+def carrinho(request):
+    produtos = Produto.objects.all()
+    total = sum(produto.preco for produto in produtos)
+    context = {
+        'produtos': produtos,
+        'total': total,
+    }
+    return render(request, 'carrinho.html', context)
+
+def finalizar_pedido(request):
+    if request.method == "POST":
+        pedido = Pedido.objects.create()
+        produtos = Produto.objects.all() 
+        pedido.produtos.set(produtos)
+        pedido.calcular_total()
+        return JsonResponse({"status": "Pedido realizado com sucesso!", "total": float(pedido.total)})
+    return JsonResponse({"status": "Método não permitido."}, status=405)
