@@ -23,4 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cozinha/', views.cozinha),
     path('criar-conta/', views.criar_conta, name='criar_conta'),
+    path('itens/', views.listar_itens, name='listar_itens'),
+    path('pedidos/', views.listar_pedidos, name='listar_pedidos'),
+],
 ]
