@@ -25,5 +25,9 @@ urlpatterns = [
     path('criar-conta/', views.criar_conta, name='criar_conta'),
     path('itens/', views.listar_itens, name='listar_itens'),
     path('pedidos/', views.listar_pedidos, name='listar_pedidos'),
+    path('carrinho/', views.carrinho, name='carrinho'),
+    path('finalizar-pedido/', views.finalizar_pedido, name='finalizar_pedido'),
 ],
 ]
+
+
