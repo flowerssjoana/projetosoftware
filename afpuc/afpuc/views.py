@@ -95,5 +95,10 @@ def finalizar_pedido(request):
         produtos = Produto.objects.all() 
         pedido.produtos.set(produtos)
         pedido.calcular_total()
-        return JsonResponse({"status": "Pedido realizado com sucesso!", "total": float(pedido.total)})
-    return JsonResponse({"status": "Método não permitido."}, status=405)
+        
+        context = {
+            "pedido_id": pedido.id,
+            "total": pedido.total,
+        }
+        return render(request, 'pedido_finalizado.html', context)
+    return redirect('carrinho')
