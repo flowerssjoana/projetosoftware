@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cardápio</title>
+</head>
+<body>
+    <h1>Cardápio</h1>
+    <ul>
+        {% for lanche in lanches %}
+            <li>
+                <h3>{{ lanche.nome }}</h3>
+                <p>{{ lanche.descricao }}</p>
+                <p>R$ {{ lanche.preco }}</p>
+                <a href="{% url 'cardapio:adicionar_ao_carrinho' lanche.id %}">Adicionar ao Carrinho</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'ver_carrinho' %}">Ir para o Carrinho</a>
+</body>
+</html>

@@ -16,18 +16,21 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path  # Certifique-se de que essa linha está presente.
+from django.urls import path # Certifique-se de que essa linha está presente.
+from django.contrib.auth import views as auth_views
 from afpuc import views  # Importando as views corretamente.
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cozinha/', views.cozinha),
-    path('criar-conta/', views.criar_conta, name='criar_conta'),
-    path('itens/', views.listar_itens, name='listar_itens'),
-    path('pedidos/', views.listar_pedidos, name='listar_pedidos'),
-    path('carrinho/', views.carrinho, name='carrinho'),
-    path('finalizar-pedido/', views.finalizar_pedido, name='finalizar_pedido'),
-],
+    path('criar-conta/', views.criar_conta),
+    path('cardapio/', views.cardapio, name='cardapio'),  # Página do cardápio
+    path('adicionar/<int:lanche_id>/', views.adicionar_ao_carrinho, name='adicionar_ao_carrinho'),
+    path('carrinho/', views.ver_carrinho, name = 'ver_carrinho'),
+    path('pedir/', views.pedir), # Função de pedir (simulação de finalização)
+    path('login/', auth_views.LoginView.as_view(), name='login')
+]
 
 
 

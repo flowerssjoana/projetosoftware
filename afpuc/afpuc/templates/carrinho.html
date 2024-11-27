@@ -1,0 +1,21 @@
+<h1>Carrinho</h1>
+
+{% if lanches %}
+    <ul>
+        {% for lanche in lanches %}
+            <li>
+                {{ lanche.nome }} - Quantidade: {{ carrinho[lanche.id|string] }} - Total: R$ {{ lanche.preco * carrinho[lanche.id|string] }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p><strong>Total do pedido: R$ {{ total }}</strong></p>
+
+    <form action="{% url 'cardapio:pedir' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Pedir</button>
+    </form>
+
+{% else %}
+    <p>Seu carrinho está vazio.</p>
+{% endif %}
