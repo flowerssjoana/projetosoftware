@@ -1,4 +1,4 @@
-<p> Deseja mesmo remover o item {{cardapio.item}} ? </p>
+<p> Deseja mesmo remover o item {{cardapio.lanche}} ? </p>
 
 <form method="POST">
   {% csrf_token %}
