@@ -1,0 +1,11 @@
+<a href="/adicionar_lanche">
+  Adicionar Lanche
+</a>
+
+{% if jogador != None %}
+  <a href = "remover_lanche/<int:id>'{{item.id}}'"">
+    Remover Lanche
+  </a>
+{% else %}
+  <p>Lanche foi removido do banco</p>
+{% endif %}
