@@ -1,0 +1,7 @@
+<p> Deseja mesmo remover o item {{cardapio.item}} ? </p>
+
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit">Remover</button>
+  
+</form>
