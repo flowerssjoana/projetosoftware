@@ -180,3 +180,33 @@ def login_page(request):
         form = LoginForm()
 
     return render(request, 'login.html', {'form': form})
+
+def home(request):
+  try:
+    lanche = Jogador.objects.get(pk=id)
+  except:
+    jogador = None
+    
+  return render(request,"home.html", {'jogador': jogador})
+
+def adicionar_lanche(request):
+  formulario = LancheForms()
+  
+  if request.method== "POST" and request.POST:
+    formulario = LancheForms(request.POST)
+
+    if formulario.is_valid():
+      formulario.save()
+      return redirect('/afpuc')
+
+  return render(request, 'adicionar_lanche.html', {'formulario': formulario})
+
+def remover_lanche(request, id):
+  lanche = lanche.objects.get(pk=id)
+
+  if request.method=="POST" and request.POST:
+    lanche.delete()
+    return redirect("/home")
+    
+  return render(request, 'remover_lanche.html', {'lanche': lanche})
+
