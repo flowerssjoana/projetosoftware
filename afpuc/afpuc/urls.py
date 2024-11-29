@@ -28,8 +28,10 @@ urlpatterns = [
     path('cardapio/', views.cardapio, name='cardapio'),  # Página do cardápio
     path('adicionar/<int:lanche_id>/', views.adicionar_ao_carrinho, name='adicionar_ao_carrinho'),
     path('carrinho/', views.ver_carrinho, name = 'ver_carrinho'),
-    path('pedir/', views.pedir), # Função de pedir (simulação de finalização)
-    path('login/', auth_views.LoginView.as_view(), name='login')
+    path('pedir/', views.pedir), # Função de pedir (simulação de finalização),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('adicionar_lanche/', views.adicionar_jogador),
+    path('remover_lanche/<int:id>/', views.remover_lanche, name='remover_lanche')
 ]
 
 
